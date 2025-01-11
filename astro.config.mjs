@@ -6,5 +6,7 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://janeaustinfan.github.io",
+  base: "wit-events",
   integrations: [tailwind(), icon()],
 });
