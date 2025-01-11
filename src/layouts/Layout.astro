@@ -1,0 +1,64 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+import { Image } from "astro:assets";
+import banner from "../assets/banner.png";
+import SocialMediaIcons from "../components/SocialMediaIcons.astro";
+const socialMediaUrls = {
+	instagram: "https://www.instagram.com/womenintechcentralar/",
+	facebook: "https://m.facebook.com/profile.php?id=61564583531641",
+	linkedin:
+		"https://www.linkedin.com/company/women-in-technology-of-central-ar/",
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="grid grid-rows-[auto,1fr,auto] w-svw h-svh">
+		<header class="flex">
+			<h1 class="sr-only">Women in Technology of Central Arkansas</h1>
+			<Image
+				src={banner}
+				class="object-contain w-full max-h-72"
+				alt="Women-in-tech of Central Arkansas logo"
+			/>
+		</header>
+		<main>
+			<div class="bg-gray-200 rounded-xl p-4">
+				<slot />
+			</div>
+		</main>
+		<footer class="flex flex-col gap-4">
+			<SocialMediaIcons {socialMediaUrls} />
+			<p class="text-center text-white text-sm">
+				&copy; {new Date().getFullYear()}
+				<a href="https://womenintechcentralar.org/" class="text-white">
+					Women in Tech Central AR
+				</a>
+			</p>
+		</footer>
+	</body>
+
+	<style>
+		body {
+			background-color: #100b37;
+			@apply gap-4;
+		}
+
+		header,
+		main,
+		footer {
+			@apply px-[max(1rem,calc(calc(100svw-1200px)/2))] pb-4;
+		}
+	</style>
+</html>

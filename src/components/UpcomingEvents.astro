@@ -1,0 +1,102 @@
+---
+import { Image } from "astro:assets";
+import speaker from "../assets/speaker.jpg";
+import attendees from "../assets/attendees.jpg";
+import group from "../assets/group.jpg";
+import { Icon } from "astro-icon/components";
+
+interface Event {
+  title: string;
+  date: Date;
+  details: string;
+  registrationUrl?: string;
+  locationUrl?: string;
+  tags: string[];
+}
+
+const events: Event[] = [
+  {
+    title: "January Networking Event",
+    date: new Date("2025-01-30T12:00:00Z"),
+    details:
+      "Come join us for a night of networking. Enjoy food and drinks while listening to a panel speak about their experience as a woman in tech.",
+    tags: ["networking", "panel", "monthly", "free"],
+  },
+  {
+    title: "January Networking Event",
+    date: new Date("2025-01-30T12:00:00Z"),
+    details:
+      "Come join us for a night of networking. Enjoy food and drinks while listening to a panel speak about their experience as a woman in tech.",
+    tags: ["networking", "panel", "monthly", "free"],
+  },
+];
+---
+
+<div class="grid gap-4">
+  <h2
+    class="font-bold text-2xl -mx-4 px-4 py-2 bg-white border border-y-gray-300"
+  >
+    Upcoming Events
+  </h2>
+  <div class="flex gap-4 justify-around">
+    <Image
+      src={speaker}
+      class="object-cover max-w-96 h-64 rounded-lg shadow-sm shadow-gray-400"
+      alt="A speaker at an event presenting to the audience"
+    />
+    <Image
+      src={attendees}
+      class="object-cover w-full max-w-96 h-64 rounded-lg shadow-sm shadow-gray-400 hidden sm:block"
+      alt="Two attendees at an event smiling for the camera"
+    />
+    <Image
+      src={group}
+      class="object-cover max-w-96 h-64 rounded-lg shadow-sm shadow-gray-400 hidden lg:block"
+      alt="A group of attendees at an event having a discussion"
+    />
+  </div>
+  <ul
+    class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 bg-white -mx-4 p-4 border border-y-gray-300"
+  >
+    {
+      events.map((event) => (
+        <li class="p-4 flex flex-col gap-2 bg-black bg-opacity-5 rounded-md transition-all shadow-gray-300 shadow-inner">
+          <ul class="flex gap-2 flex-wrap">
+            {event.tags.map((tag) => (
+              <li class="bg-white border border-gray-300 text-gray-800 text-xs px-2 py-1 rounded-sm uppercase">
+                {tag}
+              </li>
+            ))}
+          </ul>
+          <h3 class="font-bold text-2xl">{event.title}</h3>
+          <p class="uppercase text-xl font-thin">
+            {event.date.toLocaleDateString()}
+          </p>
+          <p class="font-medium">{event.details}</p>
+          {(event.registrationUrl || event.locationUrl) && (
+            <div class="flex gap-4 mt-4">
+              {event.registrationUrl && (
+                <a href={event.registrationUrl} class="button">
+                  <Icon name="mdi:register" class="w-6 h-6" />
+                  Register
+                </a>
+              )}
+              {event.locationUrl && (
+                <a href={event.locationUrl} class="button">
+                  <Icon name="mdi:map-marker" class="w-6 h-6" />
+                  Get Directions
+                </a>
+              )}
+            </div>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .button {
+    @apply bg-[#100b37] text-white px-4 py-2 rounded-md flex items-center gap-2;
+  }
+</style>

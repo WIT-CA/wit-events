@@ -1,0 +1,24 @@
+---
+import { Icon } from "astro-icon/components";
+interface Props {
+  socialMediaUrls: {
+    instagram: string;
+    facebook: string;
+    linkedin: string;
+  };
+}
+const { socialMediaUrls } = Astro.props;
+---
+
+<div class="flex gap-8 justify-center">
+  {
+    Object.entries(socialMediaUrls).map(([key, value]) => (
+      <a
+        href={value}
+        class="text-2xl bg-white rounded-full p-4 transition-transform hover:scale-110"
+      >
+        <Icon class="h-6 w-6" name={`mdi:${key}`} />
+      </a>
+    ))
+  }
+</div>
