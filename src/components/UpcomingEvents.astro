@@ -27,9 +27,8 @@ const events: Event[] = [
   {
     title: "February Networking Event",
     date: new Date("2025-02-20T12:00:00Z"),
-    details:
-      "Come join us for a night of networking in Conway.",
-    tags: ["networking",  "monthly", "free"],
+    details: "Come join us for a night of networking in Conway.",
+    tags: ["networking", "monthly", "free"],
     registrationUrl: "https://forms.office.com/r/feKZZwy49L",
   },
   {
@@ -83,7 +82,7 @@ const events: Event[] = [
           <p class="uppercase text-xl font-thin">
             {event.date.toLocaleDateString()}
           </p>
-          <p class="font-medium">{event.details}</p>
+          <p class="font-medium flex-grow">{event.details}</p>
           {(event.registrationUrl || event.locationUrl) && (
             <div class="flex gap-4 mt-4">
               {event.registrationUrl && (
