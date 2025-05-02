@@ -4,10 +4,11 @@ import speaker from "../assets/speaker.jpg";
 import attendees from "../assets/attendees.jpg";
 import group from "../assets/group.jpg";
 import { Icon } from "astro-icon/components";
+import PhotoCarousel from "./PhotoCarousel.astro";
 
 interface Event {
   title: string;
-  date: Date;
+  date?: Date;
   details: string;
   registrationUrl?: string;
   locationUrl?: string;
@@ -15,38 +16,36 @@ interface Event {
 }
 
 const events: Event[] = [
-
-{
-  title: "April Monthly Connect",
-  date: new Date("2025-04-15T12:00:00Z"),
-  details:
-    "Join us for our April Women+ in Tech Connect Meetup at The Studio Downtown, Conway! This free event is a fantastic opportunity to network with fellow tech professionals, share insights, and make new connections. Plus, we’ve got snacks and drinks covered! We're thrilled to welcome our guest speaker, Jessica Crum, CEO of Silverlake, who will be presenting on 'Pitch Like a Pro!' Learn how to craft a captivating elevator pitch that leaves a lasting impression. A big thank you to Silverlake for sponsoring this event—we appreciate their support in bringing our community together!",
-  tags: ["networking", "monthly", "free"],
-  locationUrl: "https://maps.app.goo.gl/cMzixnBDMEi2M5kS8",
-  registrationUrl: "https://forms.office.com/r/YjJt8CbGi4",
-},
   {
     title: "May Monthly Connect",
-    date: new Date("2025-05-22T12:00:00Z"),
+    date: new Date("2025-05-22T18:00:00"),
     details:
-      "Mark your calendars! Our May Women+ in Tech Connect Meetup is happening on May 22, 2025, in Little Rock. This free event is a great chance to meet and network with other tech professionals while enjoying snacks and drinks. Stay tuned for location details—we’ll share updates soon! In the meantime, save the date and spread the word. We can’t wait to see you there!",
-    tags: ["networking", "monthly", "free"],
+      "Join us for our May Women+ in Tech Connect Meetup at the Museum of Discovery in downtown Little Rock! We’re thrilled to welcome Marla Johnson, Tech Entrepreneur in Residence at the University of Arkansas at Little Rock, as our guest speaker. Enjoy light snacks, drinks, and a chance to connect with fellow tech professionals in a fun and inspiring environment.\n\nSpecial thanks to Marla Johnson for sharing her insight and to the Museum of Discovery for hosting us!",
+    tags: ["Monthly Connect", "Networking", "Little Rock", "Free"],
     registrationUrl: "https://forms.office.com/r/bNr8bCetRv",
+    locationUrl: "https://maps.app.goo.gl/94WcZBEMVhMBQAcf6",
   },
   {
-    title: "June Quarterly Connect",
-    date: "",
+    title: "June Monthly Connect",
+    date: new Date("2025-06-24T18:00:00"),
     details:
-      "Join us for our June Women+ in Tech Quarterly Connect in Conway, AR! This special event will feature networking, great speakers, and opportunities to support our community initiatives. This event is the perfect opportunity to connect with fellow tech professionals, share ideas, and learn from industry leaders. Plus, enjoy delicious food, drinks, and a chance to support our upcoming Girls+ in Technology initiative. Stay tuned for more details, including the date and venue. You won’t want to miss it!",
-    tags: ["networking", "quarterly", "fundraiser"],
-    registrationUrl: "https://forms.office.com/r/gK4syqnCZc",
-},
-
+      "Save the date for our June Connect event at the Arnold Innovation Center in Conway! While we’re still finalizing the speaker and topic, you can count on great company, delicious snacks, and an evening of networking with the Women+ in Tech community.\n\nBig thanks to the Arnold Innovation Center for hosting us this month!",
+    tags: ["Monthly Connect", "Networking", "Conway", "Free"],
+    registrationUrl: "https://forms.office.com/r/FTdGRrNEqv",
+    locationUrl: "https://maps.app.goo.gl/v1egCsBsEzb1dMZY8",
+  },
+  {
+    title: "August Monthly Connect",
+    details:
+      "We’re back from summer break and excited to kick off the fall with our August Connect! Though we’re still confirming the date, location, and speaker, we’ll be bringing the same welcoming vibes, with snacks, drinks, and networking on deck.\n\nNote: There will be no Monthly Connect in July—enjoy your summer and join us in August refreshed and ready!",
+    tags: ["Monthly Connect", "Networking", "Free"],
+    registrationUrl: "https://forms.office.com/r/2hPe8U98RL",
+  }
 ];
 ---
 
 <div
-  class="flex flex-wrap text-sm justify-end gap-4 items-center -mt-2 pb-2 px-2"
+  class="flex flex-wrap text-sm justify-end gap-4 items-center -mt-2 px-2 mb-2"
 >
   <a
     href="https://womenintechcentralar.org/annual-membership"
@@ -62,14 +61,24 @@ const events: Event[] = [
   </a>
 </div>
 
+<div class="flex gap-4 pb-4">
+  <Image
+      src={speaker}
+      class="object-cover aspect-square hidden md:block rounded-lg shadow-lg flex-shrink max-w-64"
+      alt="A speaker at an event presenting to the audience"
+    />
+  <PhotoCarousel />
+</div>
+
+<h2
+  class="font-bold text-2xl -mx-4 px-4 py-2 bg-white border border-y-gray-200"
+>
+  Upcoming Events
+</h2>
+
 <div class="grid gap-4">
-  <h2
-    class="font-bold text-2xl -mx-4 px-4 py-2 bg-white border border-y-gray-300"
-  >
-    Upcoming Events
-  </h2>
   <div class="flex gap-4 justify-around">
-    <Image
+    <!-- <Image
       src={speaker}
       class="object-cover max-w-96 h-64 rounded-lg shadow-sm shadow-gray-400"
       alt="A speaker at an event presenting to the audience"
@@ -84,49 +93,50 @@ const events: Event[] = [
       class="object-cover max-w-96 h-64 rounded-lg shadow-sm shadow-gray-400 hidden lg:block"
       alt="A group of attendees at an event having a discussion"
     />
+  </div> -->
+    <ul
+      class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 bg-white -mx-4 p-4 border border-y-gray-300"
+    >
+      {
+        events.map((event) => (
+          <li class="p-4 flex flex-col gap-2 bg-black bg-opacity-5 rounded-md transition-all shadow-gray-300 shadow-inner">
+            <ul class="flex gap-2 flex-wrap">
+              {event.tags.map((tag) => (
+                <li class="bg-white border border-gray-300 text-gray-800 text-xs px-2 py-1 rounded-sm uppercase">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+            <h3 class="font-bold text-2xl">{event.title}</h3>
+            <p class="uppercase text-xl font-thin">
+              {event.date ? event.date.toLocaleDateString() : "TBD"}
+            </p>
+            <p class="font-medium flex-grow">{event.details}</p>
+            {(event.registrationUrl || event.locationUrl) && (
+              <div class="flex gap-4 mt-4">
+                {event.registrationUrl && (
+                  <a href={event.registrationUrl} class="button">
+                    <Icon name="mdi:register" class="w-6 h-6" />
+                    Register
+                  </a>
+                )}
+                {event.locationUrl && (
+                  <a href={event.locationUrl} class="button">
+                    <Icon name="mdi:map-marker" class="w-6 h-6" />
+                    Get Directions
+                  </a>
+                )}
+              </div>
+            )}
+          </li>
+        ))
+      }
+    </ul>
   </div>
-  <ul
-    class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 bg-white -mx-4 p-4 border border-y-gray-300"
-  >
-    {
-      events.map((event) => (
-        <li class="p-4 flex flex-col gap-2 bg-black bg-opacity-5 rounded-md transition-all shadow-gray-300 shadow-inner">
-          <ul class="flex gap-2 flex-wrap">
-            {event.tags.map((tag) => (
-              <li class="bg-white border border-gray-300 text-gray-800 text-xs px-2 py-1 rounded-sm uppercase">
-                {tag}
-              </li>
-            ))}
-          </ul>
-          <h3 class="font-bold text-2xl">{event.title}</h3>
-          <p class="uppercase text-xl font-thin">
-          {event.date ? event.date.toLocaleDateString() : "TBD"}
-        </p>
-          <p class="font-medium flex-grow">{event.details}</p>
-          {(event.registrationUrl || event.locationUrl) && (
-            <div class="flex gap-4 mt-4">
-              {event.registrationUrl && (
-                <a href={event.registrationUrl} class="button">
-                  <Icon name="mdi:register" class="w-6 h-6" />
-                  Register
-                </a>
-              )}
-              {event.locationUrl && (
-                <a href={event.locationUrl} class="button">
-                  <Icon name="mdi:map-marker" class="w-6 h-6" />
-                  Get Directions
-                </a>
-              )}
-            </div>
-          )}
-        </li>
-      ))
-    }
-  </ul>
-</div>
 
-<style>
-  .button {
-    @apply bg-[#100b37] text-white px-4 py-2 rounded-md flex items-center gap-2;
-  }
-</style>
+  <style>
+    .button {
+      @apply bg-[#100b37] text-white px-4 py-2 rounded-md flex items-center gap-2 hover:scale-110 transition-transform;
+    }
+  </style>
+</div>
