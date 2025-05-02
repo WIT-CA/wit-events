@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+import img1 from "../assets/march_speakers.jpeg";
+import img2 from "../assets/attendees.jpg";
+import img3 from "../assets/women_sitting_around_table.jpeg";
+import img4 from "../assets/women_talking.jpeg";
+import img5 from "../assets/january_panelists 2.jpeg";
+
+// Array of images for the carousel
+const images = [img1, img2, img3, img4, img5];
+
+// OPTIONAL: Uncomment this block to add captions
+/* 
+const captions = [
+  "Speaker presenting at an event",
+  "Attendees connecting at a meetup",
+  "Group discussion at a workshop",
+  "Women+ in Tech Central Arkansas banner",
+  "Website background graphic"
+];
+*/
+---
+<div class="relative overflow-hidden w-full max-w-4xl mx-auto rounded-lg shadow-lg">
+  <div id="carousel" class="flex transition-transform duration-700 ease-in-out">
+    {
+      images.map((img, i) => (
+        <div class="relative w-full flex-shrink-0">
+          <Image src={img} alt="Carousel photo" class="w-full h-72 object-cover" />
+
+          {/** OPTIONAL: Enable this section to display captions under each photo */}
+          {/*
+          <div class="absolute bottom-0 w-full bg-black bg-opacity-60 text-white text-center py-2 text-sm">
+            {captions[i]}
+          </div>
+          */}
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Navigation Buttons -->
+  <button onclick="prevSlide()" class="absolute top-1/2 left-4 -translate-y-1/2 bg-[#100b37] text-white p-2 rounded-lg shadow hover:scale-110 z-10 border border-[#ffffff55] transition-transform">
+    ‹
+  </button>
+  <button onclick="nextSlide()" class="absolute top-1/2 right-4 -translate-y-1/2 bg-[#100b37] text-white p-2 rounded-lg shadow hover:scale-110 z-10 border border-[#ffffff55] transition-transform">
+    ›
+  </button>
+</div>
+
+<script type="text/javascript">
+  let index = 0;
+  const intervalTime = 5000; // 5 seconds
+  let autoSlideInterval;
+
+  function updateSlide() {
+    const carousel = document.getElementById("carousel");
+    if (carousel) {
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    }
+  }
+
+  function nextSlide() {
+    index = (index + 1) % (document.getElementById("carousel")?.children.length || 1);
+    updateSlide();
+  }
+
+  function prevSlide() {
+    index = (index - 1 + (document.getElementById("carousel")?.children.length || 1)) %
+            (document.getElementById("carousel")?.children.length || 1);
+    updateSlide();
+  }
+
+  window.addEventListener("load", () => {
+    updateSlide();
+    autoSlideInterval = setInterval(nextSlide, intervalTime); // Auto-advance every 5 seconds
+  });
+</script>
