@@ -5,6 +5,7 @@ import attendees from "../assets/attendees.jpg";
 import group from "../assets/group.jpg";
 import { Icon } from "astro-icon/components";
 import PhotoCarousel from "./PhotoCarousel.astro";
+import november_speaker from "../assets/november_speaker.jpg";
 
 interface Event {
   title: string;
@@ -63,7 +64,7 @@ const events: Event[] = [
 
 <div class="flex gap-4 pb-4">
   <Image
-      src={speaker}
+      src={november_speaker}
       class="object-cover hidden md:block rounded-lg shadow-lg flex-shrink max-h-72 max-w-64"
       alt="A speaker at an event presenting to the audience"
     />
