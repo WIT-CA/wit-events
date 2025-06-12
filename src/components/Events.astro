@@ -1,0 +1,94 @@
+---
+
+import { Icon } from "astro-icon/components";
+import type { Event } from "../lib/event";
+
+interface Props {
+  events: Event[];
+  title: string;
+}
+
+const { events, title } = Astro.props;
+---
+
+
+
+<h2
+  class="font-bold text-2xl -mx-4 px-4 py-2 bg-white border border-y-gray-200"
+>
+  {title}
+</h2>
+
+<div class="grid gap-4">
+  <div class="flex gap-4 justify-around">
+    <ul
+      class="flex-grow grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-4 bg-white -mx-4 p-4 border border-y-gray-300"
+    >
+      {
+        events.map((event) => (
+          <li class="p-4 flex  flex-grow flex-col gap-2 bg-black bg-opacity-5 rounded-md transition-all shadow-gray-300 shadow-inner">
+            <ul class="flex gap-2 flex-wrap">
+              {event.tags.map((tag) => (
+                <li class="bg-white border border-gray-300 text-gray-800 text-xs px-2 py-1 rounded-sm uppercase">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+            <h3 class="font-bold text-2xl">{event.title}</h3>
+            <p class="uppercase text-xl font-thin">
+              {event.date ? event.date.toLocaleDateString() : "TBD"}
+            </p>
+            <p class="font-medium flex-grow">{event.details}</p>
+            {(event.registrationUrl || event.locationUrl) && (
+              <div class="flex-wrap flex gap-4 mt-4">
+                {event.registrationUrl && (
+                  <a href={event.registrationUrl} class="button">
+                    <Icon name="mdi:register" class="w-6 h-6" />
+                    Register
+                  </a>
+                )}
+                {event.locationUrl && (
+                  <a href={event.locationUrl} class="button">
+                    <Icon name="mdi:map-marker" class="w-6 h-6" />
+                    Get Directions
+                  </a>
+                )}
+                {event.moreInfoUrl && (
+                  <a
+                    href={event.moreInfoUrl}
+                    class="button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon name="mdi:information-outline" class="w-6 h-6" />
+                    More Info
+                  </a>
+                )}
+              </div>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+    <div
+      class="bg-black bg-opacity-5 p-4 rounded-md shadow-inner shadow-gray-300 flex flex-col gap-4 items-start"
+    >
+      <p class="font-medium">
+        Have a community volunteer event you’d like us to spotlight? Share the
+        details and we’ll consider featuring it here.
+      </p>
+      <a href="https://your-form-link.com" class="button">
+        <Icon name="mdi:plus-box" class="w-6 h-6" />
+        Submit Your Event
+      </a>
+    </div>
+
+  <style>
+    .button {
+      @apply bg-[#100b37] text-white px-4 py-2 rounded-md flex items-center gap-2 hover:scale-110 transition-transform;
+      @apply flex-grow
+    }
+  
+  </style>
+</div>

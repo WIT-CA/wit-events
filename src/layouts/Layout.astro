@@ -6,13 +6,13 @@ interface Props {
 const { title } = Astro.props;
 import { Image } from "astro:assets";
 import banner from "../assets/banner.png";
-import SocialMediaIcons from "../components/SocialMediaIcons.astro";
-const socialMediaUrls = {
-	instagram: "https://www.instagram.com/womenintechcentralar/",
-	facebook: "https://m.facebook.com/profile.php?id=61564583531641",
-	linkedin:
-		"https://www.linkedin.com/company/women-in-technology-of-central-ar/",
-};
+// import SocialMediaIcons from "../components/SocialMediaIcons.astro";
+// const socialMediaUrls = {
+// 	instagram: "https://www.instagram.com/womenintechcentralar/",
+// 	facebook: "https://m.facebook.com/profile.php?id=61564583531641",
+// 	linkedin:
+// 		"https://www.linkedin.com/company/women-in-technology-of-central-ar/",
+// };
 ---
 
 <!doctype html>
@@ -24,7 +24,7 @@ const socialMediaUrls = {
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="grid grid-rows-[auto,1fr,auto] w-svw h-svh">
+	<body class="grid grid-rows-[auto,1fr,auto] w-vw h-svh">
 		<header class="flex">
 			<h1 class="sr-only">Women in Technology of Central Arkansas</h1>
 			<Image
@@ -38,7 +38,7 @@ const socialMediaUrls = {
 				<slot />
 			</div>
 		</main>
-		<footer class="flex flex-col gap-4">
+		<!-- <footer class="flex flex-col gap-4">
 			<SocialMediaIcons {socialMediaUrls} />
 			<p class="text-center text-white text-sm">
 				&copy; {new Date().getFullYear()}
@@ -46,7 +46,7 @@ const socialMediaUrls = {
 					Women in Tech Central AR
 				</a>
 			</p>
-		</footer>
+		</footer> -->
 	</body>
 
 	<style>

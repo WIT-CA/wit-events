@@ -1,11 +1,51 @@
 ---
-import UpcomingEvents from '../components/UpcomingEvents.astro';
-import Layout from '../layouts/Layout.astro';
+import Events from '@/components/Events.astro';
+import Layout from '@/layouts/Layout.astro';
+import type { Event } from '@/lib/event';
+import img1 from "@/assets/march_speakers.jpeg";
+import img2 from "@/assets/attendees.jpg";
+import img3 from "@/assets/women_sitting_around_table.jpeg";
+import img4 from "@/assets/women_talking.jpeg";
+import img5 from "@/assets/january_panelists 2.jpeg";
+import PhotoCarousel from '@/components/PhotoCarousel.astro';
+import november_introduction_group from "@/assets/november_introduction_group.jpg";
+import Links from '@/components/Links.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+const events: Event[] = [
+  {
+    title: "May Monthly Connect",
+    date: new Date("2025-05-22T18:00:00"),
+    details:
+      "Join us for our May Women+ in Tech Connect Meetup at the Museum of Discovery in downtown Little Rock! We’re thrilled to welcome Marla Johnson, Tech Entrepreneur in Residence at the University of Arkansas at Little Rock, as our guest speaker. Enjoy light snacks, drinks, and a chance to connect with fellow tech professionals in a fun and inspiring environment.\n\nSpecial thanks to Marla Johnson for sharing her insight and to the Museum of Discovery for hosting us!",
+    tags: ["Monthly Connect", "Networking", "Little Rock", "Free"],
+    registrationUrl: "https://forms.office.com/r/bNr8bCetRv",
+    locationUrl: "https://maps.app.goo.gl/94WcZBEMVhMBQAcf6",
+  },
+  {
+    title: "June Monthly Connect",
+    date: new Date("2025-06-24T18:00:00"),
+    details:
+      "Save the date for our June Connect event at the Arnold Innovation Center in Conway! While we’re still finalizing the speaker and topic, you can count on great company, delicious snacks, and an evening of networking with the Women+ in Tech community.\n\nBig thanks to the Arnold Innovation Center for hosting us this month!",
+    tags: ["Monthly Connect", "Networking", "Conway", "Free"],
+    registrationUrl: "https://forms.office.com/r/FTdGRrNEqv",
+    locationUrl: "https://maps.app.goo.gl/v1egCsBsEzb1dMZY8",
+  },
+  {
+    title: "August Monthly Connect",
+    details:
+      "We’re back from summer break and excited to kick off the fall with our August Connect! Though we’re still confirming the date, location, and speaker, we’ll be bringing the same welcoming vibes, with snacks, drinks, and networking on deck.\n\nNote: There will be no Monthly Connect in July—enjoy your summer and join us in August refreshed and ready!",
+    tags: ["Monthly Connect", "Networking", "Free"],
+    registrationUrl: "https://forms.office.com/r/2hPe8U98RL",
+  }
+];
 ---
 
-<Layout title="Upcoming Events | Women in Technology of Central Arkansas">
-	<UpcomingEvents />
+<Layout title="Women in Technology of Central Arkansas">
+  <div class="flex justify-center items-center min-h-[40vh]">
+    <p class="text-center text-lg text-gray-800 max-w-2xl">
+      Thank you for your support of Women in Technology of Central Arkansas. Our leadership team has made the difficult decision to step down, and the group will no longer continue under our direction. Existing members should be hearing from the national organization soon regarding the future of the group. We’re proud of the community we’ve built and hope to support new opportunities for women in tech in the future.
+    </p>
+  </div>
 </Layout>
+

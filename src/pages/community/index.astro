@@ -1,0 +1,32 @@
+---
+import Events from '@/components/Events.astro';
+import Layout from '@/layouts/Layout.astro';
+import type { Event } from '@/lib/event';
+import img1 from "@/assets/blanket_drive.jpg";
+import img2 from "@/assets/animal_shelter_volunteer.jpg";
+import img3 from "@/assets/volunteers_beach_cleanup.jpg";
+import img4 from "@/assets/volunteers_needed.jpg";
+import img5 from "@/assets/volunteers_food_drive.jpg";
+import PhotoCarousel from '@/components/PhotoCarousel.astro';
+import staticPhoto from "@/assets/volunteers_donation_drive.jpg";
+import Links from '@/components/Links.astro';
+
+
+const events: Event[] = [
+  {
+    title: "Community Coding Night",
+    date: new Date("2025-07-18T18:00:00"),
+    details: "An informal night of code, conversation, and collaboration. All skill levels welcome!",
+    tags: ["Community", "Networking", "Free"],
+    registrationUrl: "https://example.com/register",
+    locationUrl: "https://maps.app.goo.gl/example",
+    moreInfoUrl: "https://example.com/register"
+  }
+];
+---
+
+<Layout title="Community Volunteer Events | Women in Technology of Central Arkansas">
+    <Links />
+  <PhotoCarousel images={[img1, img2, img3, img4, img5]} staticImage={staticPhoto}/>
+    <Events events={events} title="Community Events" />
+</Layout>
